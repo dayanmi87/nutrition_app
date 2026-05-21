@@ -711,10 +711,12 @@ class NutritionHandler(server.BaseHTTPRequestHandler):
 
 def run_server(port=None):
     init_db()
-    httpd = server.HTTPServer(('', port), NutritionHandler)
-    print(f"Server running on http://localhost:{port}")
+    if port is None:
+        port = int(os.environ.get("PORT", 8000))
+    httpd = server.HTTPServer(("0.0.0.0", port), NutritionHandler)
+    print(f"Server running on port {port}")
     httpd.serve_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_server()
