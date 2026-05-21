@@ -709,7 +709,7 @@ class NutritionHandler(server.BaseHTTPRequestHandler):
         self._send_response(data, 200, content_type)
 
 
-def run_server(port=8000):
+def run_server(port=None):
     init_db()
     httpd = server.HTTPServer(('', port), NutritionHandler)
     print(f"Server running on http://localhost:{port}")
